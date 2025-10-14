@@ -13,7 +13,6 @@ export const processTeamPoints = (athletes: AthleteData[]) => {
 
     teamPoints[teamSlug].totalPoints += athlete.total_point;
   });
-
   return Object.entries(teamPoints).map(([slug, data]) => ({
     teamSlug: slug,
     teamName: data.teamName,
