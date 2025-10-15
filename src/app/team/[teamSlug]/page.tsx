@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import TeamDetail from '@/components/TeamDetail';
 
+// Force dynamic rendering to avoid build-time fetch issues
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: {
     teamSlug: string;
