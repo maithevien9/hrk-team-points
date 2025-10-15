@@ -12,7 +12,7 @@ interface PageProps {
 
 async function fetchTeamDataServer(teamSlug: string) {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/athletes?team_slug=${teamSlug}`, {
+    const response = await fetch(`/api/athletes?team_slug=${teamSlug}`, {
       headers: {
         Accept: 'application/json',
       },
