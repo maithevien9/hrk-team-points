@@ -11,7 +11,6 @@ async function fetchAthletesDataServer() {
       },
       next: { revalidate: 300 }, // Cache for 5 minutes
     });
-
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`);
     }
