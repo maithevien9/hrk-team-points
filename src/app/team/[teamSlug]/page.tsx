@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import TeamDetail from '@/components/TeamDetail';
+import { headers } from 'next/headers';
 
 // Force dynamic rendering to avoid build-time fetch issues
 export const dynamic = 'force-dynamic';
@@ -12,7 +13,13 @@ interface PageProps {
 
 async function fetchTeamDataServer(teamSlug: string) {
   try {
-    const response = await fetch(`/api/athletes?team_slug=${teamSlug}`, {
+    // Get the current request headers to construct the full URL
+    const headersList = await headers();
+    const host = headersList.get('host') || 'localhost:3000';
+    const protocol = headersList.get('x-forwarded-proto') || (host.includes('localhost') ? 'http' : 'https');
+    const baseUrl = `${protocol}://${host}`;
+
+    const response = await fetch(`${baseUrl}/api/athletes?team_slug=${teamSlug}`, {
       headers: {
         Accept: 'application/json',
       },
